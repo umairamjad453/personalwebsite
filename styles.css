@@ -154,14 +154,6 @@ h2:after {
     margin: 0 auto;
 }
 
-.greeting {
-    display: block;
-    font-size: clamp(1.2rem, 2vw, 1.5rem);
-    color: var(--secondary-color);
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-}
-
 .hero-title {
     font-size: clamp(3rem, 8vw, 5rem);
     letter-spacing: -0.05em;

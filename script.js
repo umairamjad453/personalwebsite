@@ -163,27 +163,33 @@ function updateContent(language) {
         `&copy; 2024 Umair Amjad. ${translations[language].copyright}`;
 }
 
-// Dark Mode Toggle
+// Theme Toggle Functionality
 const themeToggle = document.querySelector('.theme-toggle');
 const body = document.body;
 
 // Check for saved theme preference
 const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'dark') {
-    body.classList.add('dark-mode');
-    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+if (savedTheme) {
+    body.classList.add(savedTheme);
+    if (savedTheme === 'dark-mode') {
+        themeToggle.querySelector('i').classList.remove('fa-moon');
+        themeToggle.querySelector('i').classList.add('fa-sun');
+    }
 }
 
-// Toggle theme
+// Theme toggle click handler
 themeToggle.addEventListener('click', () => {
     body.classList.toggle('dark-mode');
+    const icon = themeToggle.querySelector('i');
     
     if (body.classList.contains('dark-mode')) {
-        localStorage.setItem('theme', 'dark');
-        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+        localStorage.setItem('theme', 'dark-mode');
     } else {
-        localStorage.setItem('theme', 'light');
-        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+        localStorage.removeItem('theme');
     }
 });
 

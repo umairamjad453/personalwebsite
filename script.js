@@ -94,7 +94,7 @@ const translations = {
 };
 
 const languageToggle = document.querySelector('.language-toggle');
-const currentLang = document.querySelector('.current-lang');
+const currentLang = languageToggle.querySelector('.current-lang');
 
 // Check for saved language preference
 const savedLang = localStorage.getItem('language') || 'en';
@@ -103,64 +103,41 @@ updateContent(savedLang);
 
 // Toggle language
 languageToggle.addEventListener('click', () => {
-    const currentLanguage = currentLang.textContent.toLowerCase();
-    const newLanguage = currentLanguage === 'en' ? 'es' : 'en';
-    
+    const newLanguage = currentLang.textContent === 'EN' ? 'es' : 'en';
     currentLang.textContent = newLanguage.toUpperCase();
     localStorage.setItem('language', newLanguage);
     updateContent(newLanguage);
 });
 
 function updateContent(language) {
-    // Update navigation links
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        const key = link.getAttribute('href').replace('#', '');
-        if (translations[language][key]) {
-            link.textContent = translations[language][key];
+    const elements = document.querySelectorAll('[data-key]');
+    elements.forEach(element => {
+        const key = element.getAttribute('data-key');
+        if (translations[language] && translations[language][key]) {
+            element.textContent = translations[language][key];
         }
     });
 
-    // Update hero section
-    document.querySelector('.hero-content h1').innerHTML = 
-        `${translations[language].greeting} <span class="highlight">Umair Amjad</span>`;
-    document.querySelector('.tagline').textContent = translations[language].tagline;
-    document.querySelector('.btn.primary').textContent = translations[language].viewWork;
-    document.querySelector('.btn.secondary').textContent = translations[language].getInTouch;
-
-    // Update about section
-    document.querySelector('.about h2').textContent = translations[language].aboutTitle;
-    document.querySelector('.about-text p').textContent = translations[language].aboutText;
-    document.querySelector('.detail:nth-child(1) span').textContent = translations[language].education;
-    document.querySelector('.detail:nth-child(2) span').textContent = translations[language].experience;
-    document.querySelector('.detail:nth-child(3) span').textContent = translations[language].projects;
-
-    // Update skills section
-    document.querySelector('.skills h2').textContent = translations[language].skillsTitle;
-
-    // Update portfolio section
-    document.querySelector('.projects h2').textContent = translations[language].portfolioTitle;
-    document.querySelector('.project-card:nth-child(1) h3').textContent = translations[language].ecommerceTitle;
-    document.querySelector('.project-card:nth-child(1) p').textContent = translations[language].ecommerceDesc;
-    document.querySelector('.project-card:nth-child(2) h3').textContent = translations[language].taskTitle;
-    document.querySelector('.project-card:nth-child(2) p').textContent = translations[language].taskDesc;
-    document.querySelector('.project-card:nth-child(3) h3').textContent = translations[language].weatherTitle;
-    document.querySelector('.project-card:nth-child(3) p').textContent = translations[language].weatherDesc;
-
-    // Update newsletter section
-    document.querySelector('.newsletter h2').textContent = translations[language].newsletterTitle;
-    document.querySelector('.newsletter-content p').textContent = translations[language].newsletterText;
-    document.querySelector('.newsletter-form input').placeholder = translations[language].emailPlaceholder;
-    document.querySelector('.newsletter-form .btn').textContent = translations[language].subscribe;
-
-    // Update contact section
-    document.querySelector('.contact h2').textContent = translations[language].contactTitle;
-    document.querySelector('.contact-form input[type="text"]').placeholder = translations[language].namePlaceholder;
-    document.querySelector('.contact-form textarea').placeholder = translations[language].messagePlaceholder;
-    document.querySelector('.contact-form .btn').textContent = translations[language].sendMessage;
-
-    // Update footer
-    document.querySelector('footer p').innerHTML = 
-        `&copy; 2024 Umair Amjad. ${translations[language].copyright}`;
+    // Update other text content
+    if (translations[language]) {
+        document.querySelector('.hero-title').textContent = translations[language].greeting || 'Umair Amjad';
+        document.querySelector('.hero-description').textContent = translations[language].tagline || '';
+        
+        // Update buttons
+        const primaryBtn = document.querySelector('.btn-primary');
+        const secondaryBtn = document.querySelector('.btn-secondary');
+        if (primaryBtn) primaryBtn.textContent = translations[language].getInTouch || 'Get in Touch';
+        if (secondaryBtn) secondaryBtn.textContent = translations[language].viewWork || 'View Portfolio';
+        
+        // Update sections
+        document.querySelectorAll('section').forEach(section => {
+            const sectionId = section.id;
+            const titleElement = section.querySelector('h2');
+            if (titleElement && translations[language][`${sectionId}Title`]) {
+                titleElement.textContent = translations[language][`${sectionId}Title`];
+            }
+        });
+    }
 }
 
 // Theme Toggle Functionality
@@ -168,13 +145,11 @@ const themeToggle = document.querySelector('.theme-toggle');
 const body = document.body;
 
 // Check for saved theme preference
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme) {
-    body.classList.add(savedTheme);
-    if (savedTheme === 'dark-mode') {
-        themeToggle.querySelector('i').classList.remove('fa-moon');
-        themeToggle.querySelector('i').classList.add('fa-sun');
-    }
+const savedTheme = localStorage.getItem('theme') || 'light';
+if (savedTheme === 'dark') {
+    body.classList.add('dark-mode');
+    themeToggle.querySelector('i').classList.remove('fa-moon');
+    themeToggle.querySelector('i').classList.add('fa-sun');
 }
 
 // Theme toggle click handler
@@ -185,11 +160,11 @@ themeToggle.addEventListener('click', () => {
     if (body.classList.contains('dark-mode')) {
         icon.classList.remove('fa-moon');
         icon.classList.add('fa-sun');
-        localStorage.setItem('theme', 'dark-mode');
+        localStorage.setItem('theme', 'dark');
     } else {
         icon.classList.remove('fa-sun');
         icon.classList.add('fa-moon');
-        localStorage.removeItem('theme');
+        localStorage.setItem('theme', 'light');
     }
 });
 

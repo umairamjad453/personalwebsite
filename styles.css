@@ -1,7 +1,9 @@
 /* Modern Reset and Base Styles */
 :root {
     --primary-color: #111111;
-    --secondary-color: #ffd700;
+    --secondary-color: #8A6FDF;
+    --accent-color: #B19EE8;
+    --light-purple: #E6E0FA;
     --background-color: #ffffff;
     --text-color: #333333;
     --light-gray: #f8f8f8;
@@ -202,14 +204,15 @@ h2:after {
 }
 
 .btn-primary {
-    background-color: var(--primary-color);
+    background-color: var(--secondary-color);
     color: white;
+    box-shadow: 0 4px 15px rgba(138, 111, 223, 0.3);
 }
 
 .btn-secondary {
     background-color: transparent;
-    color: var(--primary-color);
-    border: 1px solid var(--primary-color);
+    color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
 }
 
 .btn:hover {
@@ -495,7 +498,7 @@ section:nth-child(even) {
 
 .skill-card i {
     font-size: 3rem;
-    color: #ffd700;
+    color: var(--secondary-color);
     margin-bottom: 1rem;
 }
 
@@ -509,7 +512,7 @@ section:nth-child(even) {
 
 .progress {
     height: 100%;
-    background: #ffd700;
+    background: var(--secondary-color);
     border-radius: 5px;
     transition: width 1s ease;
 }
@@ -596,7 +599,7 @@ section:nth-child(even) {
 }
 
 .project-links a:hover {
-    color: #ffd700;
+    color: var(--secondary-color);
     transform: translateY(-3px);
 }
 
@@ -623,8 +626,8 @@ section:nth-child(even) {
 }
 
 .project-tags span {
-    background: rgba(255, 215, 0, 0.1);
-    color: #ffd700;
+    background: rgba(138, 111, 223, 0.1);
+    color: var(--secondary-color);
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-size: 0.9rem;
@@ -645,7 +648,7 @@ body.dark-mode .project-info p {
 }
 
 body.dark-mode .project-tags span {
-    background: rgba(255, 215, 0, 0.15);
+    background: rgba(138, 111, 223, 0.15);
 }
 
 /* Contact Section */
@@ -681,7 +684,7 @@ body.dark-mode .project-tags span {
 
 .contact-item i {
     font-size: 1.5rem;
-    color: #ffd700;
+    color: var(--secondary-color);
 }
 
 .social-links {
@@ -692,13 +695,13 @@ body.dark-mode .project-tags span {
 
 /* Update social links */
 .social-links a {
-    color: #ffd700;
+    color: var(--secondary-color);
     font-size: 1.5rem;
     transition: color 0.3s ease;
 }
 
 .social-links a:hover {
-    color: #ffc107;
+    color: var(--accent-color);
 }
 
 .contact-form {
@@ -894,7 +897,7 @@ body.dark-mode .navbar {
 
 body.dark-mode .logo {
     color: #fff;
-    background: linear-gradient(45deg, #fff, #ffd700);
+    background: linear-gradient(45deg, #fff, var(--secondary-color));
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
@@ -906,7 +909,7 @@ body.dark-mode .nav-links a {
 }
 
 body.dark-mode .nav-links a::after {
-    background: #ffd700;
+    background: var(--secondary-color);
 }
 
 body.dark-mode .hero {
@@ -1001,23 +1004,23 @@ body.dark-mode .burger div {
     font-weight: 600;
     color: #2c3e50;
     transition: all 0.3s ease;
-    border: 2px solid #ffd700;
+    border: 2px solid var(--secondary-color);
     border-radius: 5px;
 }
 
 .language-toggle:hover {
-    background: #ffd700;
-    color: #2c3e50;
+    background: var(--secondary-color);
+    color: white;
 }
 
 body.dark-mode .language-toggle {
     color: #fff;
-    border-color: #ffd700;
+    border-color: var(--secondary-color);
 }
 
 body.dark-mode .language-toggle:hover {
-    background: #ffd700;
-    color: #2c3e50;
+    background: var(--secondary-color);
+    color: white;
 }
 
 /* Animations */
@@ -1051,7 +1054,7 @@ body.dark-mode .language-toggle:hover {
     right: 50px;
     width: 70px;
     height: 70px;
-    background: #ffd700;
+    background: var(--secondary-color);
     color: white;
     border: none;
     border-radius: 50%;
@@ -1060,7 +1063,7 @@ body.dark-mode .language-toggle:hover {
     align-items: center;
     justify-content: center;
     font-size: 1.8rem;
-    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.2);
+    box-shadow: 0 6px 20px rgba(138, 111, 223, 0.2);
     transition: all 0.3s ease;
     z-index: 1000;
     opacity: 0;
@@ -1068,9 +1071,9 @@ body.dark-mode .language-toggle:hover {
 }
 
 .scroll-to-top:hover {
-    background: #ffc107;
+    background: var(--accent-color);
     transform: translateY(-5px) scale(1.1);
-    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+    box-shadow: 0 8px 25px rgba(138, 111, 223, 0.3);
 }
 
 .scroll-to-top.visible {
@@ -1081,13 +1084,13 @@ body.dark-mode .language-toggle:hover {
 
 /* Dark mode styles for scroll-to-top button */
 body.dark-mode .scroll-to-top {
-    background: #ffd700;
-    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+    background: var(--secondary-color);
+    box-shadow: 0 6px 20px rgba(138, 111, 223, 0.4);
 }
 
 body.dark-mode .scroll-to-top:hover {
-    background: #ffc107;
-    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+    background: var(--accent-color);
+    box-shadow: 0 8px 25px rgba(138, 111, 223, 0.5);
 }
 
 /* Responsive styles for scroll-to-top button */
@@ -1102,37 +1105,25 @@ body.dark-mode .scroll-to-top:hover {
 }
 
 /* Update buttons */
-.btn-primary {
-    background: #ffd700;
-    color: #2c3e50;
-    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-}
-
 .btn-primary:hover {
-    background: #ffc107;
-    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
-}
-
-.btn-secondary {
-    background: transparent;
-    color: #ffd700;
-    border: 2px solid #ffd700;
+    background: var(--accent-color);
+    box-shadow: 0 6px 20px rgba(138, 111, 223, 0.4);
 }
 
 .btn-secondary:hover {
-    background: rgba(255, 215, 0, 0.1);
+    background: rgba(138, 111, 223, 0.1);
 }
 
 /* Update skill cards */
 .skill-card i {
     font-size: 3rem;
-    color: #ffd700;
+    color: var(--secondary-color);
     margin-bottom: 1rem;
 }
 
 .progress {
     height: 100%;
-    background: #ffd700;
+    background: var(--secondary-color);
     border-radius: 5px;
     transition: width 1s ease;
 }
@@ -1140,11 +1131,11 @@ body.dark-mode .scroll-to-top:hover {
 /* Update contact section */
 .contact-item i {
     font-size: 1.5rem;
-    color: #ffd700;
+    color: var(--secondary-color);
 }
 
 .social-links a {
-    color: #ffd700;
+    color: var(--secondary-color);
     font-size: 1.5rem;
     transition: color 0.3s ease;
 }

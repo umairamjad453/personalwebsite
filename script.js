@@ -120,7 +120,6 @@ function updateContent(language) {
 
     // Update other text content
     if (translations[language]) {
-        document.querySelector('.hero-title').textContent = translations[language].greeting || 'Umair Amjad';
         document.querySelector('.hero-description').textContent = translations[language].tagline || '';
         
         // Update buttons

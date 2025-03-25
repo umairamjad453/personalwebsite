@@ -138,20 +138,50 @@ h2:after {
     overflow: hidden;
 }
 
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent 50%, rgba(138, 111, 223, 0.1) 100%);
+    z-index: 0;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(45deg, var(--secondary-color) 0%, transparent 60%);
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.2;
+    animation: pulse 8s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.2; }
+    50% { transform: scale(1.2); opacity: 0.3; }
+}
+
 .hero-content {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    max-width: 1000px;
+    align-items: flex-start;
+    max-width: 1200px;
     margin: 0 auto;
     width: 100%;
     position: relative;
+    z-index: 1;
 }
 
 .hero-text {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
+    text-align: left;
+    max-width: 600px;
 }
 
 .hero-title {
@@ -161,6 +191,18 @@ h2:after {
     color: var(--primary-color);
     font-weight: 800;
     line-height: 1.1;
+    position: relative;
+}
+
+.hero-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 80px;
+    height: 4px;
+    background: var(--secondary-color);
+    border-radius: 2px;
 }
 
 .hero-subtitle {
@@ -168,7 +210,7 @@ h2:after {
     flex-wrap: wrap;
     gap: 1rem;
     margin-bottom: 2rem;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .hero-subtitle span {
@@ -176,6 +218,9 @@ h2:after {
     font-weight: 500;
     color: var(--primary-color);
     opacity: 0.8;
+    padding: 0.5rem 1rem;
+    background: rgba(138, 111, 223, 0.1);
+    border-radius: 20px;
 }
 
 .hero-description {
@@ -184,8 +229,6 @@ h2:after {
     margin-bottom: 2.5rem;
     color: var(--dark-gray);
     max-width: 90%;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 /* Buttons */
@@ -193,7 +236,7 @@ h2:after {
     display: flex;
     gap: 1.5rem;
     margin-bottom: 3rem;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .btn {
@@ -234,14 +277,26 @@ h2:after {
 .hero-stats {
     display: flex;
     gap: 3rem;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
+    position: relative;
+}
+
+.hero-stats::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--secondary-color) 0%, transparent 100%);
+    opacity: 0.3;
 }
 
 .stat-item {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .stat-number {
@@ -263,23 +318,64 @@ body.dark-mode .greeting {
     color: var(--accent-color);
 }
 
+body.dark-mode .hero::before {
+    background: linear-gradient(135deg, transparent 50%, rgba(255, 215, 0, 0.05) 100%);
+}
+
+body.dark-mode .hero::after {
+    background: linear-gradient(45deg, #ffd700 0%, transparent 60%);
+    opacity: 0.1;
+}
+
+body.dark-mode .hero-subtitle span {
+    background: rgba(255, 215, 0, 0.1);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .hero {
         padding: 6rem 1rem;
     }
 
+    .hero::before,
+    .hero::after {
+        display: none;
+    }
+
     .hero-buttons {
         flex-direction: column;
         align-items: stretch;
+        width: 100%;
     }
 
     .hero-stats {
         gap: 2rem;
+        justify-content: space-between;
     }
 
     .stat-item {
-        flex: 0 0 calc(50% - 2rem);
+        flex: 0 0 calc(50% - 1rem);
+        align-items: center;
+    }
+
+    .hero-text {
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .hero-subtitle,
+    .hero-buttons,
+    .hero-stats {
+        justify-content: center;
+    }
+
+    .stat-item {
+        align-items: center;
+    }
+
+    .hero-title::after {
+        left: 50%;
+        transform: translateX(-50%);
     }
 }
 
